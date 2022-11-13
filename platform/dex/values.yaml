@@ -27,16 +27,3 @@ dex:
         name: dex-secrets
   ingress:
     enabled: false
-    #className: nginx
-    #annotations:
-    #  cert-manager.io/cluster-issuer: letsencrypt-prod
-    #  hajimari.io/enable: 'false'
-    #hosts:
-    #  - host: &host dex.khuedoan.com
-    #    paths:
-    #      - path: /
-    #        pathType: ImplementationSpecific
-    #tls:
-    #  - secretName: dex-tls-certificate
-    #    hosts:
-    #      - *host
