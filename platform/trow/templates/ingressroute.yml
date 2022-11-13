@@ -3,6 +3,7 @@ kind: IngressRoute
 metadata:
   name: trow
   annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
     hajimari.io/enable: 'false'
     nginx.ingress.kubernetes.io/proxy-body-size: '0'
 spec:

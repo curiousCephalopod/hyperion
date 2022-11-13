@@ -4,6 +4,7 @@ metadata:
   name: tekton-dashboard
   namespace: tekton-pipelines
   annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
     hajimari.io/appName: Tekton
     hajimari.io/icon: robot-industrial
 spec:

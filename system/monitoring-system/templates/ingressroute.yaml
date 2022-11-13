@@ -4,6 +4,7 @@ metadata:
   name: grafana-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
     hajimari.io/appName: Grafana
     hajimari.io/icon: chart-bar
 spec:

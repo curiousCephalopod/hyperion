@@ -4,6 +4,7 @@ metadata:
   name: longhorn-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
     hajimari.io/appName: Longhorn
     hajimari.io/icon: chart-bar
 spec:

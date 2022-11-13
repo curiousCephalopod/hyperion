@@ -4,6 +4,7 @@ metadata:
   name: dex-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
     hajimari.io/enable: 'false'
 spec:
   entryPoints:
