@@ -1,0 +1,20 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: longhorn-ingress
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    hajimari.io/appName: Longhorn
+    hajimari.io/icon: chart-bar
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: longhorn-tls-certificate
+  routes:
+    - match: Host(`longhorn.hyperion.law`)
+      kind: Rule
+      services:
+        - name: longhorn
+          port: http
+          kind: Service

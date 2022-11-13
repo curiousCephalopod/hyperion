@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dex-ingress
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    hajimari.io/enable: 'false'
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: dex-tls-certificate
+  routes:
+    - match: Host(`dex.hyperion.law`)
+      kind: Rule
+      services:
+        - name: dex
+          kind: Service

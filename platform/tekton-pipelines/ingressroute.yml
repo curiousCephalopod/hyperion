@@ -1,0 +1,20 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tekton-dashboard
+  namespace: tekton-pipelines
+  annotations:
+    hajimari.io/appName: Tekton
+    hajimari.io/icon: robot-industrial
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: tekton-tls-certificate
+  routes:
+    - match: Host(`tekton.hyperion.law`)
+      kind: Rule
+      services:
+        - name: tekton-dashboard
+          port: http
+          kind: Service

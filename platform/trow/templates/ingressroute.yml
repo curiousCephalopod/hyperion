@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: trow
+  annotations:
+    hajimari.io/enable: 'false'
+    nginx.ingress.kubernetes.io/proxy-body-size: '0'
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: trow-tls-certificate
+  routes:
+    - match: Host(`trow.hyperion.law`)
+      kind: Rule
+      services:
+        - name: trow
+          port: {{ .Values.trow.service.port }}
+          kind: Service

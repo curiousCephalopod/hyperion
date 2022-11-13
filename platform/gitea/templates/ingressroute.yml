@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: gitea-ingress
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    hajimari.io/appName: Gitea
+    hajimari.io/icon: git
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: gitea-tls-certificate
+  routes:
+    - match: Host(`git.hyperion.law`)
+      kind: Rule
+      services:
+        - name: gitea-http
+          kind: Service
