@@ -11,7 +11,11 @@ spec:
   - ports:
     - port: 8200
       protocol: TCP
+    - port: 8201
+      protocol: TCP
     - port: 9125
+      protocol: TCP
+    - port: 9102
       protocol: TCP
   policyTypes:
   - Ingress
@@ -46,6 +50,8 @@ spec:
   ingress:
   - ports:
     - port: 80
+      protocol: TCP
+    - port: 8080
       protocol: TCP
   policyTypes:
   - Ingress
