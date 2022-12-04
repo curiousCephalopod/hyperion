@@ -1,0 +1,135 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-cs-attacher
+  namespace: {{ .Release.Namespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: csi-attacher
+      app.kubernetes.io/instance: longhorn-system
+  ingress:
+  - ports:
+    - port: 12345
+      protocol: TCP
+  policyTypes:
+  - Ingress
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-cs-provisioner
+  namespace: {{ .Release.Namespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: csi-provisioner
+      app.kubernetes.io/instance: longhorn-system
+  ingress:
+  - ports:
+    - port: 12345
+      protocol: TCP
+  policyTypes:
+  - Ingress
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-cs-resizer
+  namespace: {{ .Release.Namespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: csi-resizer
+      app.kubernetes.io/instance: longhorn-system
+  ingress:
+  - ports:
+    - port: 12345
+      protocol: TCP
+  policyTypes:
+  - Ingress
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-cs-snapshotter
+  namespace: {{ .Release.Namespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: csi-snapshotter
+      app.kubernetes.io/instance: longhorn-system
+  ingress:
+  - ports:
+    - port: 12345
+      protocol: TCP
+  policyTypes:
+  - Ingress
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-longhorn-conversion-webhook
+  namespace: {{ .Release.Namespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: csi-longhorn-conversion-webhook
+      app.kubernetes.io/instance: longhorn-system
+  ingress:
+  - ports:
+    - port: 9443
+      protocol: TCP
+  policyTypes:
+  - Ingress
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-longhorn-backend
+  namespace: {{ .Release.Namespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: longhorn-backend
+      app.kubernetes.io/instance: longhorn-system
+  ingress:
+  - ports:
+    - port: 9500
+      protocol: TCP
+  policyTypes:
+  - Ingress
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-longhorn-frontend
+  namespace: {{ .Release.Namespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: longhorn-frontend
+      app.kubernetes.io/instance: longhorn-system
+  ingress:
+  - ports:
+    - port: 80
+      protocol: TCP
+  policyTypes:
+  - Ingress
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-longhorn-admission-webhook
+  namespace: {{ .Release.Namespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: longhorn-admission-webhook
+      app.kubernetes.io/instance: longhorn-system
+  ingress:
+  - ports:
+    - port: 9443
+      protocol: TCP
+  policyTypes:
+  - Ingress
