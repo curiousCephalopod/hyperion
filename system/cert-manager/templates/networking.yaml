@@ -10,7 +10,7 @@ spec:
       app.kubernetes.io/name: webhook
   ingress:
   - ports:
-    - port: 443
+    - port: 10250
       protocol: TCP
   policyTypes:
   - Ingress
