@@ -6,7 +6,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/instance: vault
+      app.kubernetes.io/name: vault
   ingress:
   - ports:
     - port: 8200
@@ -16,6 +16,8 @@ spec:
     - port: 9125
       protocol: TCP
     - port: 9102
+      protocol: TCP
+    - port: 9091
       protocol: TCP
   policyTypes:
   - Ingress
