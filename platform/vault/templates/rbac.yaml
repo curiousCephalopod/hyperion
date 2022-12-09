@@ -11,6 +11,7 @@ spec:
   allowedCapabilities:
    - IPC_LOCK
    - SETFCAP
+   - mlockex
   volumes:
     - 'configMap'
     - 'emptyDir'
@@ -24,19 +25,13 @@ spec:
   hostIPC: false
   hostPID: false
   runAsUser:
-    rule: 'MustRunAsNonRoot'
+    rule: 'RunAsAny'
   seLinux:
     rule: 'RunAsAny'
   supplementalGroups:
-    rule: 'MustRunAs'
-    ranges:
-      - min: 1
-        max: 65535
+    rule: 'RunAsAny'
   fsGroup:
-    rule: 'MustRunAs'
-    ranges:
-      - min: 1
-        max: 65535
+    rule: 'RunAsAny'
   readOnlyRootFilesystem: false
 ---
 
