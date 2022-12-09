@@ -28,7 +28,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app: vault-configurer
+      app.kubernetes.io/name: vault-configurer
       app.kubernetes.io/instance: vault
   ingress:
   - ports:
@@ -45,7 +45,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app: vault-operator
+      app.kubernetes.io/name: vault-operator
       app.kubernetes.io/instance: vault
   ingress:
   - ports:
