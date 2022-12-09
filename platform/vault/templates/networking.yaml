@@ -53,21 +53,6 @@ spec:
       protocol: TCP
     - port: 8080
       protocol: TCP
-  policyTypes:
-  - Ingress
----
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: allow-vault-operator2
-  namespace: {{ .Release.Namespace }}
-spec:
-  podSelector:
-    matchLabels:
-      app: vault-operator
-      app.kubernetes.io/instance: vault
-  ingress:
-  - ports:
     - port: 8383
       protocol: TCP
   policyTypes:
