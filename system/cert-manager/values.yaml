@@ -4,3 +4,14 @@ cert-manager:
     enabled: true
     servicemonitor:
       enabled: true
+  image:
+    repository: bitnami/cert-manager-controller
+  webhook:
+    image:
+      repository: bitnami/cert-manager-webhook
+  cainjector:
+    image:
+      repository: bitnami/cert-manager-ca-injector
+  startapicheck:
+    image:
+      repository: bitnami/cert-manager-ctl
