@@ -1,5 +1,0 @@
-vault-operator:
-  psp:
-    enabled: true
-  serviceAccount:
-    name: vault
