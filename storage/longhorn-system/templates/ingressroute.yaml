@@ -16,6 +16,6 @@ spec:
     - match: Host(`longhorn.hyperion.law`)
       kind: Rule
       services:
-        - name: longhorn
+        - name: longhorn-frontend
           port: http
           kind: Service
