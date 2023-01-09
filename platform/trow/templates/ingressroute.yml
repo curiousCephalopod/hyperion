@@ -2,8 +2,8 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: trow
+  namespace: {{ .Release.Namespace }}
   annotations:
-    cert-manager.io/cluster-issuer: ca-issuer
     hajimari.io/enable: 'false'
     nginx.ingress.kubernetes.io/proxy-body-size: '0'
 spec:

@@ -4,7 +4,6 @@ metadata:
   name: gitea-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
-    cert-manager.io/cluster-issuer: ca-issuer
     hajimari.io/appName: Gitea
     hajimari.io/icon: git
 spec:
