@@ -17,7 +17,7 @@ dex:
           bindDN: cn=admin,cn=users,dc=hyperion,dc=law
           bindPW: $LDAP_BIND_PASSWORD
           userSearch:
-            bindDN: cn=users,dc=hyperion,dc=law
+            baseDN: cn=users,dc=hyperion,dc=law
             username: uid
             idAttr: uid
             emailAttr: mail
