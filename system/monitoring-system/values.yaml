@@ -1,4 +1,8 @@
 kube-prometheus-stack:
+  global:
+    rbac:
+      pspEnabled: true
+
   defaultRules:
     rules:
       etcd: false

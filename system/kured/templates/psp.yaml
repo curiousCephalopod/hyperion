@@ -1,59 +1,59 @@
-apiVersion: policy/v1beta1
-kind: PodSecurityPolicy
-metadata:
-  name: kured-psp
-  annotations:
-    seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'runtime/default'
-    seccomp.security.alpha.kubernetes.io/defaultProfileName: 'runtime/default'
-spec:
-  privileged: true
-  allowPrivilegeEscalation: false
-  volumes:
-    - 'configMap'
-    - 'emptyDir'
-    - 'projected'
-    - 'secret'
-    - 'downwardAPI'
-    - 'csi'
-    - 'persistentVolumeClaim'
-    - 'ephemeral'
-  hostNetwork: false
-  hostIPC: false
-  hostPID: true
-  runAsUser:
-    rule: 'MustRunAsNonRoot'
-  seLinux:
-    rule: 'RunAsAny'
-  supplementalGroups:
-    rule: 'MustRunAs'
-    ranges:
-      - min: 1
-        max: 65535
-  fsGroup:
-    rule: 'MustRunAs'
-    ranges:
-      - min: 1
-        max: 65535
-  readOnlyRootFilesystem: false
----
-kind: Role
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: kured-psp-role
-rules:
-  - apiGroups: ["policy"]
-    resources: ["podsecuritypolicies"]
-    verbs: ["use"]
-    resourceNames: ["kured-psp"]
----
-kind: RoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: kured-psp-binding
-roleRef:
-  kind: Role
-  name: kured-psp-role
-  apiGroup: rbac.authorization.k8s.io
-subjects:
-  - kind: ServiceAccount
-    name: kured
+#apiVersion: policy/v1beta1
+#kind: PodSecurityPolicy
+#metadata:
+#  name: kured-psp
+#  annotations:
+#    seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'runtime/default'
+#    seccomp.security.alpha.kubernetes.io/defaultProfileName: 'runtime/default'
+#spec:
+#  privileged: true
+#  allowPrivilegeEscalation: false
+#  volumes:
+#    - 'configMap'
+#    - 'emptyDir'
+#    - 'projected'
+#    - 'secret'
+#    - 'downwardAPI'
+#    - 'csi'
+#    - 'persistentVolumeClaim'
+#    - 'ephemeral'
+#  hostNetwork: false
+#  hostIPC: false
+#  hostPID: true
+#  runAsUser:
+#    rule: 'MustRunAsNonRoot'
+#  seLinux:
+#    rule: 'RunAsAny'
+#  supplementalGroups:
+#    rule: 'MustRunAs'
+#    ranges:
+#      - min: 1
+#        max: 65535
+#  fsGroup:
+#    rule: 'MustRunAs'
+#    ranges:
+#      - min: 1
+#        max: 65535
+#  readOnlyRootFilesystem: false
+#---
+#kind: Role
+#apiVersion: rbac.authorization.k8s.io/v1
+#metadata:
+#  name: kured-psp-role
+#rules:
+#  - apiGroups: ["policy"]
+#    resources: ["podsecuritypolicies"]
+#    verbs: ["use"]
+#    resourceNames: ["kured-psp"]
+#---
+#kind: RoleBinding
+#apiVersion: rbac.authorization.k8s.io/v1
+#metadata:
+#  name: kured-psp-binding
+#roleRef:
+#  kind: Role
+#  name: kured-psp-role
+#  apiGroup: rbac.authorization.k8s.io
+#subjects:
+#  - kind: ServiceAccount
+#    name: kured

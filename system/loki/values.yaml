@@ -1,4 +1,6 @@
 loki-stack:
+  rbac:
+    pspEnabled: true
   loki:
     serviceMonitor:
       enabled: true
