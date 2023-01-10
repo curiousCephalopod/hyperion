@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: openldap-tls-certificate
+  namespace: {{ .Release.Namespace }}
+spec:
+  commonName: ldap.hyperion.law
+  secretName: openldap-tls-certificate
+  dnsNames:
+    - ldap.hyperion.law
+    - openldap
+    - openldap.openldap
+    - openldap.openldap.svc
+    - openldap.openldap.svc.cluster.local
+  issuerRef:
+    name: ca-issuer
+    kind: ClusterIssuer

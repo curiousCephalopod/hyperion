@@ -7,6 +7,22 @@ dex:
         inCluster: true
     oauth2:
       skipApprovalScreen: true
+    connectors:
+      - type: ldap
+        id: ldap
+        name: LDAP
+        config:
+          host: openldap:1636
+          rootCA: /etc/ssl/certs/law-ca.pem
+          bindDN: cn=admin,cn=users,dc=hyperion,dc=law
+          bindPW: $LDAP_BIND_PASSWORD
+          userSearch:
+            bindDN: cn=users,dc=hyperion,dc=law
+            username: uid
+            idAttr: uid
+            emailAttr: mail
+            nameAttr: name
+            preferredUsernameAttr: uid
     staticClients:
       - id: grafana-sso
         name: Grafana
@@ -18,3 +34,11 @@ dex:
         name: dex-secrets
   ingress:
     enabled: false
+  volumes:
+    - name: law-ca
+      configMap:
+        name: law-ca
+  volumeMounts:
+    - name: law-ca
+      mountPath: /etc/ssl/certs/law-ca.pem
+      subPath: law-ca.pem
