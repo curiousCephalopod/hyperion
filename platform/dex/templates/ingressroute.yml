@@ -15,4 +15,5 @@ spec:
       kind: Rule
       services:
         - name: dex
+          port: http
           kind: Service
