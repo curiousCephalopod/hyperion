@@ -4,14 +4,13 @@ metadata:
   name: grafana-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
-    cert-manager.io/cluster-issuer: ca-issuer
     hajimari.io/appName: Grafana
     hajimari.io/icon: chart-bar
 spec:
   entryPoints:
     - websecure
   tls:
-    secretName: grafana-general-tls
+    secretName: grafana-tls-certificate
   routes:
     - match: Host(`grafana.hyperion.law`)
       kind: Rule

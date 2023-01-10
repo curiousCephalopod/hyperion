@@ -2,13 +2,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: gitea-tls-certificate
+  name: grafana-tls-certificate
   namespace: {{ .Release.Namespace }}
 spec:
-  commonName: gitea.hyperion.law
-  secretName: gitea-tls-certificate
+  commonName: grafana.hyperion.law
+  secretName: grafana-tls-certificate
   dnsNames:
-    - gitea.hyperion.law
+    - grafana.hyperion.law
   issuerRef:
     name: ca-issuer
     kind: ClusterIssuer
