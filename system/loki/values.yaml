@@ -2,5 +2,10 @@ loki-stack:
   rbac:
     pspEnabled: true
   loki:
+    rbac:
+      pspEnabled: true
     serviceMonitor:
       enabled: true
+  promtail:
+    rbac:
+      pspEnabled: true
