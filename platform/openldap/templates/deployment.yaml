@@ -41,14 +41,9 @@ spec:
             - name: tls-ldap
               containerPort: 1636
           volumeMounts:
-            - name: openldap-data
-              mountPath: /bitnami/openldap
             - name: tls
               mountPath: /opt/bitnami/openldap/certs
       volumes:
-        - name: openldap-data
-          persistentVolumeClaim:
-            claimName: openldap-data
         - name: tls
           secret:
             secretName: openldap-tls-certificate
