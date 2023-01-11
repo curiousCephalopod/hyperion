@@ -5,9 +5,9 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   entryPoints:
-    - websecure
+    - ldap
   routes:
-    - match: HostSNI(`ldap.hyperion.law`)
+    - match: HostSNI(`*`)
       services:
         - name: openldap
           port: tls-ldap
