@@ -15,6 +15,6 @@ spec:
     - match: Host(`grafana.hyperion.law`)
       kind: Rule
       services:
-        - name: grafana
+        - name: {{ .Release.Namespace }}-grafana
           port: http-web
           kind: Service
