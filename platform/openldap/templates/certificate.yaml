@@ -3,6 +3,8 @@ kind: Certificate
 metadata:
   name: openldap-tls-certificate
   namespace: {{ .Release.Namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   commonName: ldap.hyperion.law
   secretName: openldap-tls-certificate

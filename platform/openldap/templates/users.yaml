@@ -1,0 +1,32 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: openldap-users
+  namespace: {{ .Release.Namespace }}
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: vault
+  target:
+    name: openldap-users
+    template:
+        engineVersion: v2
+        templateFrom:
+          - target: Data
+            literal: |
+              {{ range $key, $value := .}}
+              2-{{ $key }}-user.ldif: |
+                dn: cn={{ $key }},ou=users,dc=hyperion,dc=law
+                changetype: add
+                cn: {{ $key }}
+                uid: {{ $key }}
+                sn: {{ $key }}
+                mail: {{ $key }}@hyperion.law
+                objectclass: inetorgperson
+                objectclass: top
+                userPassword: {{ $value }}
+              {{ end }}
+      
+  dataFrom:
+    - extract:
+        key: /ldap/users

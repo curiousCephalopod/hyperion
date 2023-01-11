@@ -4,6 +4,8 @@ kind: Certificate
 metadata:
   name: dex-tls-certificate
   namespace: {{ .Release.Namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   commonName: dex.hyperion.law
   secretName: dex-tls-certificate

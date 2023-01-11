@@ -20,8 +20,8 @@ dex:
             baseDN: ou=users,dc=hyperion,dc=law
             username: uid
             idAttr: uid
-            emailAttr: mail
-            nameAttr: name
+            emailAttr: uid
+            nameAttr: uid
             preferredUsernameAttr: uid
     staticClients:
       - id: grafana-sso
