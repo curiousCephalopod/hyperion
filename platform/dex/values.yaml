@@ -14,7 +14,7 @@ dex:
         config:
           host: openldap.openldap:1636
           rootCA: /etc/ssl/certs/law-ca.pem
-          bindDN: cn=admin,cn=users,dc=hyperion,dc=law
+          bindDN: cn=admin,ou=users,dc=hyperion,dc=law
           bindPW: $LDAP_BIND_PASSWORD
           userSearch:
             baseDN: cn=users,dc=hyperion,dc=law
