@@ -12,7 +12,7 @@ dex:
         id: ldap
         name: LDAP
         config:
-          host: openldap:1636
+          host: openldap.openldap:1636
           rootCA: /etc/ssl/certs/law-ca.pem
           bindDN: cn=admin,cn=users,dc=hyperion,dc=law
           bindPW: $LDAP_BIND_PASSWORD
