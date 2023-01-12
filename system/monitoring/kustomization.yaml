@@ -8,6 +8,10 @@ helmCharts:
     namespace: monitoring
     includeCRDs: true
     valuesFile: values.yaml
+    valuesInline:
+      global:
+        rbac: true
+        pspEnabled: true
 resources:
   - certificate.yaml
   - ingressroute.yaml
