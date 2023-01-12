@@ -2,7 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: grafana-ingress
-  namespace: {{ .Release.Namespace }}
+  namespace: monitoring
   annotations:
     hajimari.io/appName: Grafana
     hajimari.io/icon: chart-bar
@@ -15,6 +15,6 @@ spec:
     - match: Host(`grafana.hyperion.law`)
       kind: Rule
       services:
-        - name: {{ .Release.Namespace }}-grafana
+        - name: monitoring-grafana
           port: http-web
           kind: Service
