@@ -1,5 +1,6 @@
 global:
   rbac:
+    create: true
     pspEnabled: true
 
 defaultRules:
@@ -44,6 +45,7 @@ kubeProxy:
 
 grafana:
   rbac:
+    create: true
     pspEnabled: true
   adminPassword: null
   ingress:
@@ -76,4 +78,5 @@ prometheus:
 
 prometheus-node-exporter:
   rbac:
+    create: true
     pspEnabled: true
