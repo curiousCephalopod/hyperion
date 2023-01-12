@@ -7,6 +7,7 @@ helmCharts:
     releaseName: monitoring
     namespace: monitoring
     includeCRDs: true
+    valuesMerge: override
     valuesFile: values.yaml
     valuesInline:
       global:
