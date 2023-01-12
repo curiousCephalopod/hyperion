@@ -29,4 +29,6 @@ spec:
       
   dataFrom:
     - extract:
+        conversionStrategy: Default
+        decodingStrategy: None
         key: /ldap/users
