@@ -14,7 +14,7 @@ spec:
         templateFrom:
           - target: Data
             literal: |
-              {{ {{ range $key, $value := . }}
+              {{`{{ range $key, $value := . }}
               2-{{ $key }}-user.ldif: |
                 dn: cn={{ $key }},ou=users,dc=hyperion,dc=law
                 changetype: add
@@ -25,7 +25,7 @@ spec:
                 objectclass: inetorgperson
                 objectclass: top
                 userPassword: {{ $value }}
-              {{ end }} }}
+              {{ end }}`}}
       
   dataFrom:
     - extract:
