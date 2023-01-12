@@ -14,9 +14,7 @@ spec:
         templateFrom:
           - target: Data
             literal: |
-              {{ .Data }}
-              {{ .Values }}
-              {{ range $key, $value := .Data }}
+              {{ range $key, $value := .Values }}
               2-{{ $key }}-user.ldif: |
                 dn: cn={{ $key }},ou=users,dc=hyperion,dc=law
                 changetype: add
