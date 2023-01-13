@@ -1,0 +1,26 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: spotify-stats-ingress
+  namespace: {{ .Release.Namespace }}
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: spotify-stats-tls-certificate
+  routes:
+    - match: Host(`spotify.hyperion.law`) && PathPrefix(`/api`)
+      kind: Rule
+      middlewares:
+        - name: api-middleware
+          namespace: {{ .Release.Name }}
+      services:
+        - name: spotify-stats
+          port: api-http
+          kind: Service
+    - match: Host(`spotify.hyperion.law`)
+      kind: Rule
+      services:
+        - name: spotify-stats
+          port: web-http
+          kind: Service

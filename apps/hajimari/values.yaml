@@ -1,0 +1,10 @@
+hajimari:
+  env:
+    TZ: Europe/London
+  ingress:
+    main:
+      enabled: false
+  hajimari:
+    defaultEnable: true
+    namespaceSelector:
+      any: true

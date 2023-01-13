@@ -1,0 +1,16 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: hajimari-tls-certificate
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  commonName: hajimari.hyperion.law
+  secretName: hajimari-tls-certificate
+  dnsNames:
+    - hajimari.hyperion.law
+  issuerRef:
+    name: ca-issuer
+    kind: ClusterIssuer
