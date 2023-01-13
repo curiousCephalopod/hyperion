@@ -67,6 +67,11 @@ kube-prometheus-stack:
         auth_url: https://dex.hyperion.law/auth
         token_url: https://dex.hyperion.law/token
         api_url: https://dex.hyperion.law/userinfo
+    extraConfigmapMounts:
+      - name: law-ca
+        mountPath: /etc/ssl/certs/law-ca.pem
+        subPath: law-ca.pem
+        configMap: law-ca
 
   prometheus:
     prometheusSpec:
