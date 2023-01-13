@@ -48,7 +48,7 @@ kube-prometheus-stack:
       enabled: false
     alertmanagerSpec:
       storage:
-        volumeClaimTempalate:
+        volumeClaimTemplate:
           spec:
             storageClassName: longhorn
             accessModes: ["ReadWriteOnce"]
