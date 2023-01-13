@@ -30,6 +30,8 @@ spec:
               value: https://spotify.hyperion.law
             - name: TIMEZONE
               value: Europe/London
+            - name: MONGO_ENDPOINT
+              value: mongodb://127.0.0.1:27017/your_spotify
           ports:
             - name: api-http
               containerPort: 8080
