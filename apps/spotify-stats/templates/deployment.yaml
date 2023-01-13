@@ -35,9 +35,10 @@ spec:
               containerPort: 8080
         - name: mongo
           image: mongo:4.4.8
+          command: ["mongod"]
           volumeMounts:
             - name: stats-db
-              mountPath: /data
+              mountPath: /data/db
         - name: spotify-stats-web
           image: yooooomi/your_spotify_client
           env:
