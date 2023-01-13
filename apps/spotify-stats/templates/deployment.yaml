@@ -18,7 +18,6 @@ spec:
       containers:
         - name: spotify-stats-server
           image: yooooomi/your_spotify_server
-          restart: always
           envFrom:
             - secretRef:
                 name: spotify-stats-secrets
@@ -41,7 +40,6 @@ spec:
               mountPath: /data/db
         - name: spotify-stats-web
           image: yooooomi/your_spotify_client
-          restart: always
           env:
             - name: API_ENDPOINT
               value: https://spotify.hyperion.law/api
