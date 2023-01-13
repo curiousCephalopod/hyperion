@@ -36,7 +36,7 @@ spec:
         - name: mongo
           image: mongo:4.4.8
           volumeMounts:
-            - name: stats_db
+            - name: stats-db
               mountPath: /data/db
         - name: spotify-stats-web
           image: yooooomi/your_spotify_client
@@ -47,6 +47,6 @@ spec:
             - name: web-http
               containerPort: 3000
       volumes:
-        - name: stats_db
+        - name: stats-db
           persistentVolumeClaim:
-            claimName: stats_db
+            claimName: stats-db

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: stats_db
+  name: stats-db
   namespace: {{ .Release.Namespace }}
 spec:
   storageClassName: longhorn
