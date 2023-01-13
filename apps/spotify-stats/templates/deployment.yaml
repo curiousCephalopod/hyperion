@@ -37,7 +37,7 @@ spec:
           image: mongo:4.4.8
           volumeMounts:
             - name: stats-db
-              mountPath: /data/db
+              mountPath: /data
         - name: spotify-stats-web
           image: yooooomi/your_spotify_client
           env:
