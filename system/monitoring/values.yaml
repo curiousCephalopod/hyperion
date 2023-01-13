@@ -43,6 +43,42 @@ kube-prometheus-stack:
       enabled: true
       https: false
 
+  alertmanager:
+    ingress:
+      enabled: false
+    alertmanagerSpec:
+      storage:
+        volumeClaimTempalate:
+          spec:
+            storageClassName: longhorn
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 5Gi
+      externalUrl: https://alertmanager.hyperion.law
+      routePrefix: /
+    
+  tplConfig: false
+
+  config:
+    global:
+      resolve_timeout: 5m
+
+    route:
+      group_by: ['alertname']
+      group_wait: 2s # not default 30
+      group_interval: 30s # not default 5m
+      repeat_interval: 4h # not default 12h
+      receiver: 'null'
+      routes:
+      - receiver: 'null'
+        matchers:
+          - alertname =~ "InfoInhibitor|Watchdog"
+    receivers:
+    - name: 'null'
+    templates:
+    - '/etc/alertmanager/config/*.tmpl'
+
   grafana:
     rbac:
       pspEnabled: true
@@ -67,6 +103,13 @@ kube-prometheus-stack:
         auth_url: https://dex.hyperion.law/auth
         token_url: https://dex.hyperion.law/token
         api_url: https://dex.hyperion.law/userinfo
+      auth.jwt:
+      enabled: true
+      header_name: Teleport-Jwt-Assertion
+      email_claim: sub
+      username_claim: sub
+      jwk_set_url: https://teleport.hyperion.law:443/.well-known/jwks.json
+    defaultDashboardsTimezone: Europe/London
     extraConfigmapMounts:
       - name: law-ca
         mountPath: /etc/ssl/certs/law-ca.pem
@@ -74,11 +117,91 @@ kube-prometheus-stack:
         configMap: law-ca
 
   prometheus:
+    ingress:
+      enabled: false
     prometheusSpec:
+      externalUrl: https://prometheus.hyperion.law
+      routePrefix: /
       ruleSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
+      additionalScrapeConfigs:
+      - job_name: kubernetes-pod-endpoints
+        kubernetes_sd_configs:
+        - {role: pod}
+        relabel_configs:
+        - action: keep
+          regex: true
+          source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        - action: keep
+          regex: true
+          source_labels: [__meta_kubernetes_pod_annotationpresent_prometheus_io_port]
+        - action: drop
+          regex: (kube-system|monitoring)
+          source_labels: [__meta_kubernetes_namespace]
+        - action: replace
+          regex: (https?)
+          source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scheme]
+          target_label: __scheme__
+        - action: replace
+          regex: (.+)
+          source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+          target_label: __metrics_path__
+        - action: replace
+          regex: ([^:]+)(?::\d+)?;(\d+)
+          replacement: $1:$2
+          source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+          target_label: __address__
+        - {action: labelmap, regex: __meta_kubernetes_pod_label_(.+)}
+        - action: replace
+          source_labels: [__meta_kubernetes_namespace]
+          target_label: kubernetes_namespace
+        - action: replace
+          source_labels: [__meta_kubernetes_service_name]
+          target_label: kubernetes_name
+      - job_name: kubernetes-service-endpoints
+        kubernetes_sd_configs:
+        - {role: service}
+        relabel_configs:
+        - action: keep
+          regex: true
+          source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scrape]
+        - action: drop
+          regex: (kube-system|monitoring)
+          source_labels: [__meta_kubernetes_namespace]
+        - action: keep
+          regex: .*metrics
+          source_labels: [__meta_kubernetes_service_port_name]
+        - action: replace
+          regex: (https?)
+          source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scheme]
+          target_label: __scheme__
+        - action: replace
+          regex: (.+)
+          source_labels: [__meta_kubernetes_service_annotation_prometheus_io_path]
+          target_label: __metrics_path__
+        - action: replace
+          regex: ([^:]+)(?::\d+)?;(\d+)
+          replacement: $1:$2
+          source_labels: [__address__, __meta_kubernetes_service_annotation_prometheus_io_port]
+          target_label: __address__
+        - {action: labelmap, regex: __meta_kubernetes_service_label_(.+)}
+        - action: replace
+          source_labels: [__meta_kubernetes_namespace]
+          target_label: kubernetes_namespace
+        - action: replace
+          source_labels: [__meta_kubernetes_service_name]
+          target_label: kubernetes_name
+      externalLabels: {'cluster': 'k3s', 'env': 'k8s'}
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: longhorn
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 5Gi
 
   prometheus-node-exporter:
     rbac:

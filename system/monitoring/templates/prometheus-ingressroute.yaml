@@ -1,0 +1,20 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus-ingress
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    hajimari.io/appName: Prometheus
+    hajimari.io/icon: chart-bar
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: prometheus-tls-certificate
+  routes:
+    - match: Host(`prometheus.hyperion.law`)
+      kind: Rule
+      services:
+        - name: {{ .Release.Namespace }}-kube-prometheus-prometheus
+          port: http-web
+          kind: Service
