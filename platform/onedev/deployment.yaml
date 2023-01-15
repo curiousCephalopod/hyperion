@@ -10,11 +10,11 @@ spec:
           envFrom:
             - secretRef:
                 name: onedev-secrets
-          volumeMounts:
-            - name: law-cacerts
-              mountPath: /etc/ssl/certs/java/cacerts
-              subPath: cacerts
-      volumes:
-        - name: law-cacerts
-          configMap:
-            name: law-cacerts
+#          volumeMounts:
+#            - name: law-cacerts
+#              mountPath: /etc/ssl/certs/java/cacerts
+#              subPath: cacerts
+#      volumes:
+#        - name: law-cacerts
+#          configMap:
+#            name: law-cacerts
