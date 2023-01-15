@@ -7,11 +7,8 @@ helmCharts:
     releaseName: onedev
     namespace: onedev
     valuesFile: values.yaml
-patchesStrategicMerge:
-  - deletesqlsecret.yaml
 patches:
   - addfsgroup.yaml
 resources:
   - ingressroute.yaml
   - certificate.yaml
-  - secret.yaml
