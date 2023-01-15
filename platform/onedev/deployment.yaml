@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onedev
+spec:
+  template:
+    spec:
+      containers:
+        - name: onedev
+          envFrom:
+            - secretRef:
+                name: onedev-secrets
+          volumeMounts:
+            - name: law-ca
+              mountPath: /etc/ssl/certs/law-ca.pem
+              subPath: law-ca.pem
+      volumes:
+        - name: law-ca
+          configMap:
+            name: law-ca
