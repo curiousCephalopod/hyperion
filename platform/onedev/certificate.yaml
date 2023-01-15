@@ -1,0 +1,16 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: onedev-tls-certificate
+  namespace: onedev
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  commonName: onedev.hyperion.law
+  secretName: onedev-tls-certificate
+  dnsNames:
+    - onedev.hyperion.law
+  issuerRef:
+    name: ca-issuer
+    kind: ClusterIssuer

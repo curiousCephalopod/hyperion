@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: onedev-ingress
+  namespace: onedev
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: onedev-tls-certificate
+  routes:
+    - match: Host(`onedev.hyperion.law`)
+      kind: Rule
+      services:
+        - name: onedev
+          port: 80
+          kind: Service

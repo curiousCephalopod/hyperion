@@ -1,0 +1,6 @@
+volumes:
+  onedev:
+    storageClassName: longhorn
+    size: 50Gi
+  mysql:
+    storageClassName: longhorn
