@@ -7,3 +7,8 @@ volumes:
 service:
   main:
     type: ClusterIP
+initial:
+  user: admin
+  email: admin@hyperion.law
+  serverUrl: https://onedev.hyperion.law
+  sshRootUrl: ssh://onedev.hyperion.law

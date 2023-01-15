@@ -9,6 +9,7 @@ helmCharts:
     valuesFile: values.yaml
 patches:
   - addfsgroup.yaml
+  - deploymentsecrets.yaml
 resources:
   - ingressroute.yaml
   - certificate.yaml

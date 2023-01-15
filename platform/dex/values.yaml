@@ -29,6 +29,11 @@ dex:
         redirectURIs:
           - 'https://grafana.hyperion.law/login/generic_oauth'
         secretEnv: GRAFANA_SSO_CLIENT_SECRET
+      - id: onedev-sso
+        name: OneDev
+        redirectURIs:
+          - 'https://onedev.hyperion.law/~sso/callback/Dex'
+        secretEnv: ONEDEV_SSO_CLIENT_SECRET
   envFrom:
     - secretRef:
         name: dex-secrets
