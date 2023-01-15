@@ -7,3 +7,5 @@ spec:
     spec:
       securityContext:
         fsGroup: 999
+        runAsUser: 999
+        runAsGroup: 999
