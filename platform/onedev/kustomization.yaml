@@ -13,3 +13,4 @@ patches:
 resources:
   - ingressroute.yaml
   - certificate.yaml
+  - secrets.yaml
