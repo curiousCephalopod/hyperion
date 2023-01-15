@@ -9,6 +9,8 @@ helmCharts:
     valuesFile: values.yaml
 patchesStrategicMerge:
   - deletesqlsecret.yaml
+patches:
+  - addfsgroup.yaml
 resources:
   - ingressroute.yaml
   - certificate.yaml

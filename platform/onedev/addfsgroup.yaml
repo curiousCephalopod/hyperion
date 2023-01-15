@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onedev-mysql
+spec:
+  template:
+    spec:
+      containers:
+        - name: onedev-mysql
+          securityContext:
+            fsGroup: 999
