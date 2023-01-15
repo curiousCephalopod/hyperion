@@ -4,3 +4,6 @@ volumes:
     size: 50Gi
   mysql:
     storageClassName: longhorn
+service:
+  main:
+    type: ClusterIP
