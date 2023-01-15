@@ -11,10 +11,10 @@ spec:
             - secretRef:
                 name: onedev-secrets
           volumeMounts:
-            - name: law-ca
-              mountPath: /etc/ssl/certs/law-ca.pem
-              subPath: law-ca.pem
+            - name: law-cacerts
+              mountPath: /etc/ssl/certs/java/cacerts
+              subPath: cacerts
       volumes:
-        - name: law-ca
+        - name: law-cacerts
           configMap:
-            name: law-ca
+            name: law-cacerts
