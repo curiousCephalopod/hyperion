@@ -1,0 +1,5 @@
+dn: ou=users,dc=hyperion,dc=law
+changetype: add
+objectclass: organizationalUnit
+objectlcass: top
+ou: users

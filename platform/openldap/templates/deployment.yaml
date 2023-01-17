@@ -25,8 +25,6 @@ spec:
           env:
             - name: LDAP_ADMIN_USERNAME
               value: admin
-            - name: LDAP_USERS
-              value: j
             - name: LDAP_ROOT
               value: dc=hyperion,dc=law
             - name: LDAP_ENABLE_TLS
@@ -37,13 +35,22 @@ spec:
               value: /opt/bitnami/openldap/certs/ca.crt
             - name: LDAP_TLS_KEY_FILE
               value: /opt/bitnami/openldap/certs/tls.key
+            - name: LDAP_SKIP_DEFAULT_TREE
+              value: "yes"
+            - name: LDAP_CUSTOM_LDIR_DIR
+              value: /ldif
           ports:
             - name: tls-ldap
               containerPort: 1636
           volumeMounts:
             - name: tls
               mountPath: /opt/bitnami/openldap/certs
+            - name: ldifs
+              mountPath: /ldif
       volumes:
         - name: tls
           secret:
             secretName: openldap-tls-certificate
+        - name: ldifs
+          secret:
+            secretName: openldap-ldifs

@@ -1,19 +1,23 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: openldap-users
+  name: openldap-ldifs
   namespace: {{ .Release.Namespace }}
 spec:
   secretStoreRef:
     kind: ClusterSecretStore
     name: vault
   target:
-    name: openldap-users
+    name: openldap-ldifs
     template:
         engineVersion: v2
         templateFrom:
           - target: Data
             literal: |
+              0-domain.ldif: |
+{{ .Files.Get "files/domain.ldif" | indent 16 }}
+              1-ou.ldif: |
+{{ .Files.Get "files/ou.ldif" | indent 16 }}
               {{`{{ range $key, $value := . }}
               2-{{ $key }}-user.ldif: |
                 dn: cn={{ $key }},ou=users,dc=hyperion,dc=law

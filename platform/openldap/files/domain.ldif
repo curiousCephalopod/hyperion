@@ -1,0 +1,5 @@
+dn: dc=hyperion,dc=law
+changetype: add
+objectclass: domain
+objectclass: top
+dc: hyperion
