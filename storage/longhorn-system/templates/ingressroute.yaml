@@ -4,7 +4,7 @@ metadata:
   name: longhorn-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
-    argocd.argoproj.io/sync-options: Validate=false,SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "5"
     hajimari.io/appName: Longhorn
     hajimari.io/icon: chart-bar
 spec:
