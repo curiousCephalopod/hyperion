@@ -20,7 +20,7 @@ dex:
             baseDN: ou=users,dc=hyperion,dc=law
             username: uid
             idAttr: uid
-            emailAttr: uid
+            emailAttr: mail
             nameAttr: uid
             preferredUsernameAttr: uid
     staticClients:
