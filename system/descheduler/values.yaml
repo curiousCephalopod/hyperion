@@ -14,3 +14,9 @@ descheduler:
         enabled: true
       LowNodeUtilization:
         enabled: true
+        params:
+          nodeResourceUtilizationThresholds:
+            thresholds:
+              memory: 40
+            targetThresholds:
+              memory: 60
