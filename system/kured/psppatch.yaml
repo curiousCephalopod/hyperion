@@ -1,0 +1,9 @@
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: kured
+spec:
+  hostNetwork: true
+  hostPorts:
+    - max: 8080
+      min: 8080
