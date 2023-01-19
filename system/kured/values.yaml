@@ -1,0 +1,9 @@
+kured:
+  configuration:
+    annotateNodes: true
+    #rebootSentinelCommand: sh -c "! needs-restarting --reboothint"
+    timeZone: Europe/London
+  rbac:
+    create: true
+  podSecurityPolicy:
+    create: true
