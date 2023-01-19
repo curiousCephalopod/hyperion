@@ -2,7 +2,7 @@ descheduler:
   deschedulerPolicy:
     strategies:
       RemoveDuplicates:
-        enabled: false
+        enabled: true
       RemovePodsViolatingNodeTaints:
         enabled: true
       RemovePodsViolatingNodeAffinity:
