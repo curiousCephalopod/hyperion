@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: onedev-ingress-ssh
+  namespace: onedev
+spec:
+  entryPoints:
+    - ssh
+  routes:
+    - match: Host(`onedev.hyperion.law`)
+      services:
+        - name: onedev
+          port: ssh
+

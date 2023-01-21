@@ -11,7 +11,8 @@ patches:
   - addfsgroup.yaml
   - deployment.yaml
 resources:
-  - ingressroute.yaml
+  - ingressroutehttp.yaml
+  - ingressroutessh.yaml
   - certificate.yaml
   - secrets.yaml
   - psp.yaml
