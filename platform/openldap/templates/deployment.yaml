@@ -39,8 +39,6 @@ spec:
               value: "yes"
             - name: LDAP_CUSTOM_LDIF_DIR
               value: /ldif
-            - name: LDAP_LOGLEVEL
-              value: "-1"
           ports:
             - name: tls-ldap
               containerPort: 1636
