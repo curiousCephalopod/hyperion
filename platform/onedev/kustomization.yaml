@@ -10,9 +10,10 @@ helmCharts:
 patches:
   - addfsgroup.yaml
   - deployment.yaml
-  - rolebinding.yaml
 resources:
   - ingressroute.yaml
   - certificate.yaml
   - secrets.yaml
   - psp.yaml
+  - role.yaml
+  - rolebinding.yaml
