@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - ssh
   routes:
-    - match: Host(`onedev.hyperion.law`)
+    - match: HostSNI(`*`)
       services:
         - name: onedev
           port: ssh
