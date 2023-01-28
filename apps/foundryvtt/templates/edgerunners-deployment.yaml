@@ -25,10 +25,14 @@ spec:
             - secretRef:
                 name: foundryvtt-secrets
           env:
-            FOUNDRY_HOSTNAME: foundry.hyperion.law
-            FOUNDRY_IP_DISCOVERY: "false"
-            FOUNDRY_PROXY_SSL: "true"
-            FOUNDRY_ROUTE_PREFIX: edgerunners
+            - name: FOUNDRY_HOSTNAME
+              value: foundry.hyperion.law
+            - name: FOUNDRY_IP_DISCOVERY
+              value: "false"
+            - name: FOUNDRY_PROXY_SSL
+              value: "true"
+            - name: FOUNDRY_ROUTE_PREFIX
+              value: edgerunners
           ports:
             - name: http
               containerPort: 3000
