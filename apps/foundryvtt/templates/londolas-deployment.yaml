@@ -18,10 +18,7 @@ spec:
         app.kubernetes.io/name: foundryvtt
         foundryvtt/world: londolas
     spec:
-      securityContext:
-        fsGroup: 421
-        runAsUser: 421
-        runAsGroup: 421
+      serviceAccountName: foundryvtt
       containers:
         - name: foundryvtt-londolas
           image: trow.hyperion.law/foundryvtt:10.291.0
@@ -37,8 +34,6 @@ spec:
               value: "true"
             - name: FOUNDRY_ROUTE_PREFIX
               value: londolas
-            - name: CONTAINER_PRESERVE_OWNER
-              value: "true"
           ports:
             - name: http
               containerPort: 3000
