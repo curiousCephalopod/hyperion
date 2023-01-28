@@ -38,10 +38,6 @@ spec:
               value: "true"
             - name: FOUNDRY_ROUTE_PREFIX
               value: londolas
-            - name: FOUNDRY_GID
-              value: "421"
-            - name: FOUNDRY_UID
-              value: "421"
           ports:
             - name: http
               containerPort: 3000
