@@ -18,6 +18,10 @@ spec:
         app.kubernetes.io/name: foundryvtt
         foundryvtt/world: edgerunners
     spec:
+      securityContext:
+        fsGroup: 421
+        runAsUser: 421
+        runAsGroup: 421
       serviceAccountName: foundryvtt
       containers:
         - name: foundryvtt-edgerunners
@@ -34,6 +38,10 @@ spec:
               value: "true"
             - name: FOUNDRY_ROUTE_PREFIX
               value: edgerunners
+            - name: FOUNDRY_GID
+              value: "421"
+            - name: FOUNDRY_UID
+              value: "421"
           ports:
             - name: http
               containerPort: 3000
