@@ -44,6 +44,9 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+          securityContext:
+            add:
+              - CHOWN
       volumes:
         - name: data
           persistentVolumeClaim:
