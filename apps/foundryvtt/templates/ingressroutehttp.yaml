@@ -1,0 +1,23 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: foundryvtt-ingress
+  namespace: {{ .Release.Name }}
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: foundryvtt-tls-certificate
+  routes:
+    - match: Host(`foundry.hyperion.law`) && PathPrefix(`/londolas`)
+      kind: Rule
+      services:
+        - name: foundryvtt-londolas
+          port: http
+          kind: Service
+    - match: Host(`foundry.hyperion.law`) && PathPrefix(`/edgerunners`)
+      kind: Rule
+      services:
+        - name: foundryvtt-edgerunners
+          port: http
+          kind: Service

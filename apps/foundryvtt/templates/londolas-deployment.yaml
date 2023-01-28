@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foundryvtt-londolas
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: foundryvtt
+    foundryvtt/world: londolas
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: foundryvtt
+      foundryvtt/world: londolas
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: foundryvtt
+        foundryvtt/world: londolas
+    spec:
+      containers:
+        - name: foundryvtt-londolas
+          image: trow.hyperion.law/foundryvtt:10.291.0
+          envFrom:
+            - secretRef:
+                name: foundryvtt-secrets
+          env:
+            FOUNDRY_HOSTNAME: foundry.hyperion.law
+            FOUNDRY_IP_DISCOVERY: "false"
+            FOUNDRY_PROXY_SSL: "true"
+            FOUNDRY_ROUTE_PREFIX: londolas
+          ports:
+            - name: http
+              containerPort: 3000
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: londolas-data
