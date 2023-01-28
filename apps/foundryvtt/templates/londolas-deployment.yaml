@@ -18,6 +18,10 @@ spec:
         app.kubernetes.io/name: foundryvtt
         foundryvtt/world: londolas
     spec:
+      securityContext:
+        fsGroup: 421
+        runAsUser: 421
+        runAsGroup: 421
       containers:
         - name: foundryvtt-londolas
           image: trow.hyperion.law/foundryvtt:10.291.0
