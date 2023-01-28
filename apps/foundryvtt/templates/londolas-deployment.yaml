@@ -22,7 +22,6 @@ spec:
         fsGroup: 421
         runAsUser: 421
         runAsGroup: 421
-      serviceAccountName: foundryvtt
       containers:
         - name: foundryvtt-londolas
           image: trow.hyperion.law/foundryvtt:10.291.0
