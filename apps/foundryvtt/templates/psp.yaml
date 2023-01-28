@@ -8,8 +8,6 @@ metadata:
 spec:
   privileged: false
   allowPrivilegeEscalation: false
-  allowedCapabilities:
-    - CHOWN
   requiredDropCapabilities:
     - ALL
   volumes:

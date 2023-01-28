@@ -18,10 +18,6 @@ spec:
         app.kubernetes.io/name: foundryvtt
         foundryvtt/world: londolas
     spec:
-      securityContext:
-        fsGroup: 421
-        runAsUser: 421
-        runAsGroup: 421
       serviceAccountName: foundryvtt
       containers:
         - name: foundryvtt-londolas
@@ -44,10 +40,6 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
-          securityContext:
-            capabilities:
-              add:
-                - CHOWN
       volumes:
         - name: data
           persistentVolumeClaim:
