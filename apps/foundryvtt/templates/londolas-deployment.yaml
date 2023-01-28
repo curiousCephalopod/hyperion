@@ -25,6 +25,7 @@ spec:
       containers:
         - name: foundryvtt-londolas
           image: trow.hyperion.law/foundryvtt:10.291.0
+          imagePullPolicy: Always
           envFrom:
             - secretRef:
                 name: foundryvtt-secrets
