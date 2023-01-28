@@ -40,7 +40,7 @@ spec:
               value: londolas
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: 30000
           volumeMounts:
             - name: data
               mountPath: /data
