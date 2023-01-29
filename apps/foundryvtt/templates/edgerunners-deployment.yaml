@@ -18,7 +18,7 @@ spec:
         app.kubernetes.io/name: foundryvtt
         foundryvtt/world: edgerunners
     spec:
-      serviceAccountName: foundryvtt
+      #serviceAccountName: foundryvtt
       securityContext:
         fsGroup: 421
       # initContainers:
@@ -45,20 +45,22 @@ spec:
               value: "true"
             - name: FOUNDRY_ROUTE_PREFIX
               value: edgerunners
+            - name: NODE_EXTRA_CA_CERTS
+              value: /usr/local/share/ca-certificates/law-ca.crt
           ports:
             - name: http
               containerPort: 30000
           volumeMounts:
             - name: data
               mountPath: /data
-          securityContext:
-            capabilities:
-              add:
-                - NET_ADMIN
-            privileged: true
           # securityContext:
-          #   runAsUser: 421
-          #   runAsGroup: 421
+          #   capabilities:
+          #     add:
+          #       - NET_ADMIN
+          #   privileged: true
+          securityContext:
+            runAsUser: 421
+            runAsGroup: 421
       volumes:
         - name: data
           persistentVolumeClaim:
