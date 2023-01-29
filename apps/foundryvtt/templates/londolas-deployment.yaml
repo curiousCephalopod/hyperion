@@ -19,10 +19,6 @@ spec:
         foundryvtt/world: londolas
     spec:
       serviceAccountName: foundryvtt
-      securityContext:
-        fsGroup: 421
-        runAsUser: 421
-        runAsGroup: 421
       initContainers:
         - name: iptables
           image: trow.hyperion.law/init-proxy:latest
@@ -53,6 +49,10 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+          securityContext:
+            fsGroup: 421
+            runAsUser: 421
+            runAsGroup: 421
       volumes:
         - name: data
           persistentVolumeClaim:
