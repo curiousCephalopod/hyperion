@@ -18,17 +18,8 @@ spec:
         app.kubernetes.io/name: foundryvtt
         foundryvtt/world: londolas
     spec:
-      #serviceAccountName: foundryvtt
       securityContext:
         fsGroup: 421
-      # initContainers:
-      #   - name: iptables
-      #     image: trow.hyperion.law/init-proxy:latest
-      #     securityContext:
-      #       capabilities:
-      #         add:
-      #           - NET_ADMIN
-      #       privileged: true
       containers:
         - name: foundryvtt-londolas
           image: trow.hyperion.law/foundryvtt:10.291.0
@@ -54,10 +45,6 @@ spec:
             - name: data
               mountPath: /data
           securityContext:
-            # capabilities:
-            #   add:
-            #     - NET_ADMIN
-            # privileged: true
             runAsUser: 421
             runAsGroup: 421
       volumes:

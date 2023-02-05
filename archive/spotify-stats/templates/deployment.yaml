@@ -32,12 +32,6 @@ spec:
               value: Europe/London
             - name: MONGO_ENDPOINT
               value: mongodb://127.0.0.1:27017/your_spotify
-            - name: HTTP_PROXY
-              value: http://10.10.2.1:3128/
-            - name: HTTPS_PROXY
-              value: http://10.10.2.1:3128/
-            - name: NO_PROXY
-              value: 127.0.0.1,spotify.hyperion.law
           ports:
             - name: api-http
               containerPort: 8080
