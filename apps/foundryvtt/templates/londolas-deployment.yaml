@@ -18,6 +18,7 @@ spec:
         app.kubernetes.io/name: foundryvtt
         foundryvtt/world: londolas
     spec:
+      automountServiceAccountToken: false
       securityContext:
         fsGroup: 421
       containers:
