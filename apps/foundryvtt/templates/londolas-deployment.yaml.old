@@ -23,22 +23,28 @@ spec:
         fsGroup: 421
       containers:
         - name: foundryvtt-londolas
-          image: mbround18/foundryvtt-docker:latest
+          image: trow.hyperion.law/foundryvtt:10.291.0
           imagePullPolicy: Always
           envFrom:
             - secretRef:
                 name: foundryvtt-secrets
           env:
-            - name: HOSTNAME
+            - name: FOUNDRY_HOSTNAME
               value: foundry.hyperion.law
-            - name: SSL_PROXY
+            - name: FOUNDRY_IP_DISCOVERY
+              value: "false"
+            - name: FOUNDRY_PROXY_SSL
               value: "true"
+            - name: FOUNDRY_ROUTE_PREFIX
+              value: londolas
+            - name: NODE_EXTRA_CA_CERTS
+              value: /usr/local/share/ca-certificates/law-ca.crt
           ports:
             - name: http
-              containerPort: 4444
+              containerPort: 30000
           volumeMounts:
             - name: data
-              mountPath: /foundrydata
+              mountPath: /data
           securityContext:
             runAsUser: 421
             runAsGroup: 421
