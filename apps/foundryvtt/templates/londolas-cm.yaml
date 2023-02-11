@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: londolas-cm
+  namespace: {{ .Release.Namespace }}
+data:
+  options.json: |
+    {
+      "dataPath": "/home/foundry/data",
+      "compressStatic": true,
+      "fullscreen": false,
+      "hostname": "foundry.hyperion.law",
+      "language": "en.core",
+      "localHostname": null,
+      "port": 30000,
+      "protocol": null,
+      "proxyPort": null,
+      "proxySSL": true,
+      "routePrefix": "londolas",
+      "updateChannel": "stable",
+      "upnp": false,
+      "upnpLeaseDuration": null,
+      "awsConfig": null,
+      "passwordSalt": null,
+      "sslCert": null,
+      "sslKey": null,
+      "world": null,
+      "serviceConfig": null
+    }
